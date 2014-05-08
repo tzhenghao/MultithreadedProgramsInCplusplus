@@ -26,7 +26,7 @@ gProf: all
 all: main.o
 	g++ $(FLAGS) main.o -o multithread
 
-main.o:	backgroundTask.h main.cpp
+main.o:	backgroundTask.h threadGuard.h main.cpp
 	g++ $(FLAGS) -c main.cpp
 
 # make clean - remove .o files and the executable file.

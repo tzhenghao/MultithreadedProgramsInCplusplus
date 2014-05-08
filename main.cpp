@@ -7,6 +7,7 @@
 #include <iostream>
 #include <thread>
 #include "backgroundTask.h"
+#include "threadGuard.h"
 
 using namespace std;
 
@@ -15,7 +16,9 @@ void hello();
 void doLambda1();
 void doLambda2();
 void doSomething(int i);
+void doSomethingInCurrentThread();
 void oops();
+void f();
 
 struct func {
 	
@@ -72,9 +75,17 @@ int main ()
 	
 	lambdaThread.join();
 	
+	cout << "Making another thread!\n";
+	cout << "************************\n";
+
+	f();
+
+	cout << "Making another thread!\n";
+	cout << "************************\n";
+
 	// Call function oops, which makes another new thread.
 	oops();
-
+	
 	cout << "Done!\n";
 	
 	return 0;
@@ -100,6 +111,11 @@ void doSomething(int i) {
 	cout << "You entered " << i <<  " into the doSomething function!\n";
 }
 
+void doSomethingInCurrentThread() {
+
+	cout << "I'm doing something in this thread!\n";
+}
+
 // EFFECTS: Practice will detach and how threads are handled when/before the 
 //			the function exits.
 void oops() {
@@ -108,5 +124,17 @@ void oops() {
 	func myFunc(someLocalState);
 	thread funcThread(myFunc);
 	// funcThread.detach();
+	funcThread.join();
+}
+
+void f() {
+	
+	int someLocalState = 0;
+	func myFunc(someLocalState);
+	thread funcThread(myFunc);
+	threadGuard g(funcThread);
+
+	doSomethingInCurrentThread();
+	
 	funcThread.join();
 }
