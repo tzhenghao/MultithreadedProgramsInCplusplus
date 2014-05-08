@@ -1,3 +1,10 @@
+// Name: Zheng Hao Tan
+// Email: tanzhao@umich.edu
+// Date: May 8, 2014
+
+// This is just a dummy class that I use to test my main.cpp with the thread
+// constructor.
+
 #ifndef BACKGROUNDTASK_H
 #define BACKGROUNDTASK_H
 

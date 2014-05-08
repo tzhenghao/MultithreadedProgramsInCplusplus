@@ -4,7 +4,9 @@ Multithreaded Programs Written in C++
 Introduction
 ------------
 
-Programs and code samples that I've written in C++ to grasp multithreading and concurrency concepts.
+Programs and code samples that I've written in C++ to grasp multithreading and 
+concurrency concepts. This is explored by making use of the pthread libraries in 
+the C++ Standard Template Library (STL).
 
 Support
 ------
