@@ -11,6 +11,8 @@ using namespace std;
 
 // This class demonstrates how we can check and join the thread only when it is 
 // done executing its stuff.
+// We are going to use the Resource Acquisition Is Initialization (RAII) model
+// to approach this situation.
 
 class threadGuard {
 
