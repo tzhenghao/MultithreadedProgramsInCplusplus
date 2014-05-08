@@ -1,5 +1,8 @@
-# Zheng Hao Tan
+# Name: Zheng Hao Tan
+# Email: tanzhao@umich.edu
 # Date: May 8, 2014
+
+# Makefile for the multithreaded programs written in C++.
 
 #Enables C++11
 PATH := /usr/um/gcc-4.7.0/bin:$(PATH)
@@ -30,6 +33,3 @@ main.o:	backgroundTask.h main.cpp
 # You can modify it to remove whatever.
 clean:
 	rm -f *.o multithread
-
-submit:
-	tar -czf submit.tar.gz *.cpp *.h Makefile
