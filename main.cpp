@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <thread>
+#include <cassert>
 #include "backgroundTask.h"
 #include "threadGuard.h"
 
@@ -86,6 +87,14 @@ int main ()
 	// Call function oops, which makes another new thread.
 	oops();
 	
+	cout << "Making another thread!\n";
+	cout << "************************\n";
+
+	cout << "Checking if it is joinable with an assert...\n";
+	thread temp(doSomethingInCurrentThread);
+	temp.detach();
+	assert(!temp.joinable());
+
 	cout << "Done!\n";
 	
 	return 0;
