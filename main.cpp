@@ -14,6 +14,22 @@ using namespace std;
 void hello();
 void doLambda1();
 void doLambda2();
+void doSomething(int i);
+void oops();
+
+struct func {
+	
+	int &i;
+
+	func(int &i_):i(i_) {}
+	
+	void operator() () {
+
+		for (unsigned j = 0; j < 1000000; ++j) {
+			doSomething(i);
+		}
+	}
+};
 
 int main () 
 {
@@ -55,6 +71,9 @@ int main ()
 	});
 	
 	lambdaThread.join();
+	
+	// Call function oops, which makes another new thread.
+	oops();
 
 	cout << "Done!\n";
 	
@@ -74,4 +93,20 @@ void doLambda1() {
 void doLambda2() {
 
 	cout << "Called 2nd lambda function!\n";
+}
+
+void doSomething(int i) {
+
+	cout << "You entered " << i <<  " into the doSomething function!\n";
+}
+
+// EFFECTS: Practice will detach and how threads are handled when/before the 
+//			the function exits.
+void oops() {
+
+	int someLocalState = 0;
+	func myFunc(someLocalState);
+	thread funcThread(myFunc);
+	// funcThread.detach();
+	funcThread.join();
 }
