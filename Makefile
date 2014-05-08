@@ -20,16 +20,16 @@ debug: all
 gProf: FLAGS += -pg
 gProf: all
 
-all: base.o
-	g++ $(FLAGS) base.o -o base
+all: main.o
+	g++ $(FLAGS) main.o -o multithread
 
-base.o: MST.h Graph.h TSP.h base.cpp
-	g++ $(FLAGS) -c base.cpp
+main.o:	backgroundTask.h main.cpp
+	g++ $(FLAGS) -c main.cpp
 
 # make clean - remove .o files and the executable file.
 # You can modify it to remove whatever.
 clean:
-	rm -f *.o base
+	rm -f *.o multithread
 
 submit:
-	tar -czf submit.tar.gz *.cpp *.h Makefile test-*.txt
+	tar -czf submit.tar.gz *.cpp *.h Makefile
