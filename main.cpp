@@ -91,6 +91,8 @@ int main ()
 	cout << "************************\n";
 
 	cout << "Checking if it is joinable with an assert...\n";
+
+	// Testing my understanding on whether a detached thread can be joined.
 	thread temp(doSomethingInCurrentThread);
 	temp.detach();
 	assert(!temp.joinable());
